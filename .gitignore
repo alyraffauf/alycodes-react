@@ -100,3 +100,9 @@ coverage/
 # Temporary folders
 tmp/
 temp/
+
+# Nix result symlinks
+result/
+result-*/
+result
+result-*

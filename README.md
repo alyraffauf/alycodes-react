@@ -81,6 +81,41 @@ alycodes/
 └── dist/             # Production build output
 ```
 
+## Nix Flake
+
+This project includes a comprehensive Nix flake for reproducible builds and development environments.
+
+### Available Commands
+
+- **`nix run`** - Start development server (npm start)
+- **`nix run .#build`** - Build production app (npm run build)
+- **`nix run .#serve`** - Build and serve with preview
+- **`nix develop`** - Enter development shell with Node.js
+- **`nix build`** - Build the website as a Nix package
+- **`nix build .#docker`** - Build Docker image with nginx
+
+### Docker Deployment
+
+The flake builds a production-ready Docker image with nginx:
+
+```bash
+# Build the Docker image
+nix build .#docker
+
+# Load into Docker (if Docker is available)
+docker load < result
+
+# Run the container
+docker run -p 8080:80 alycodes-react:latest
+```
+
+The Docker image includes:
+- Optimized nginx configuration
+- Gzip compression
+- Static asset caching
+- Security headers
+- Client-side routing support
+
 ## License
 
 This is a personal website project. All content and code are proprietary to Aly Raffauf.
