@@ -1,9 +1,5 @@
 [
   {
-    "filename": "syntax-highlighting-demo.md",
-    "lastModified": "2025-09-03T15:20:24.567Z"
-  },
-  {
     "filename": "self2025.md",
     "lastModified": "2025-09-02T16:31:58.776Z"
   },
@@ -60,15 +56,7 @@
     "lastModified": "2025-09-02T16:31:58.767Z"
   },
   {
-    "filename": "at-protocol-explained.md",
-    "lastModified": "2025-09-02T16:26:05.765Z"
-  },
-  {
     "filename": "nixos-declarative-config.md",
     "lastModified": "2025-09-02T16:25:56.006Z"
-  },
-  {
-    "filename": "cyberpunk-ui-react.md",
-    "lastModified": "2025-09-02T16:25:46.259Z"
   }
 ]
