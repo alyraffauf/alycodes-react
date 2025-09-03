@@ -1,5 +1,7 @@
 # alycodes-react
 
+[![Build and Push Docker Image](https://github.com/username/alycodes-react/actions/workflows/docker.yml/badge.svg)](https://github.com/username/alycodes-react/actions/workflows/docker.yml)
+
 Personal website for Aly Raffauf built with React, TypeScript, and Vite.
 
 ## Description
@@ -115,6 +117,29 @@ The Docker image includes:
 - Static asset caching
 - Security headers
 - Client-side routing support
+
+### GitHub Container Registry
+
+The project includes a GitHub workflow that automatically builds and pushes Docker images to the GitHub Container Registry on every push to master:
+
+```bash
+# Pull the latest image from GitHub Container Registry
+docker pull ghcr.io/username/alycodes-react:latest
+
+# Run the container
+docker run -p 8080:80 ghcr.io/username/alycodes-react:latest
+```
+
+Available tags:
+- `latest` - Latest build from master branch
+- `master-<sha>` - Specific commit builds
+- Semantic version tags (if using releases)
+
+The workflow automatically:
+- Builds the Docker image using Nix
+- Tags with appropriate version information
+- Pushes to `ghcr.io/username/alycodes-react`
+- Uses GitHub's built-in authentication
 
 ## License
 
