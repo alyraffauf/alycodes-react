@@ -1,0 +1,439 @@
+/* Shared Terminal Styles - Common patterns used across components */
+
+/* Full Page Terminal Layout (BlogPost, AboutFile) */
+.full-page-terminal {
+    min-height: 100vh;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    padding: var(--space-8) 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    cursor: pointer;
+}
+
+/* Specific scrollbar styling for full-page-terminal to prevent conflicts */
+.full-page-terminal::-webkit-scrollbar {
+    width: 8px;
+}
+
+.full-page-terminal::-webkit-scrollbar-track {
+    background: var(--darker-bg);
+}
+
+.full-page-terminal::-webkit-scrollbar-thumb {
+    background: var(--border-glow);
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-base);
+}
+
+.full-page-terminal::-webkit-scrollbar-thumb:hover {
+    background: var(--electric-purple);
+}
+
+/* CSS class to disable scanlines animation for full-page-terminal components */
+.disable-scanlines::before {
+    display: none !important;
+}
+
+.full-page-terminal .container {
+    max-width: 900px;
+    margin: 0 auto;
+    cursor: default;
+    position: relative;
+    z-index: 1;
+}
+
+.full-page-terminal .terminal-window {
+    margin: 0 auto;
+    cursor: default;
+}
+
+/* Directory Listing Styles (About, Blog) */
+/* Shared Terminal Container - Ensures consistent widths */
+.blog-terminal,
+.about-terminal {
+    max-width: 900px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    border: 1px solid var(--border-glow) !important;
+    border-radius: var(--radius-md) !important;
+    overflow: hidden !important;
+    position: relative !important;
+}
+
+.terminal-container {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.directory-listing {
+    font-family: "Fira Code", monospace;
+    font-size: var(--font-base);
+}
+
+.listing-header {
+    border-bottom: 1px solid var(--border-glow);
+    padding-bottom: var(--space-2);
+    opacity: 0.6;
+}
+
+.directory-entry {
+    display: grid;
+    grid-template-columns: 80px 60px 60px 80px 90px 1fr;
+    gap: var(--space-3);
+    padding: var(--space-2) 0;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    align-items: center;
+}
+
+.directory-entry:hover {
+    background: rgba(255, 105, 180, 0.05);
+    transform: translateX(var(--space-1));
+}
+
+.directory-entry:focus {
+    outline: 2px solid var(--neon-pink);
+    outline-offset: 2px;
+}
+
+/* Directory Entry Field Styles */
+.permissions {
+    font-size: var(--font-xs);
+    width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.owner,
+.group {
+    font-size: var(--font-xs);
+    width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.size {
+    font-size: var(--font-xs);
+    text-align: right;
+    width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.date {
+    font-size: var(--font-xs);
+    width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Loading States */
+.loading-state,
+.empty-state {
+    padding: var(--space-6);
+    text-align: center;
+    color: var(--text-muted);
+    font-family: "Fira Code", monospace;
+    font-style: italic;
+}
+
+.loading-state::after {
+    content: "";
+    animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+    0%,
+    20% {
+        content: "";
+    }
+    40% {
+        content: ".";
+    }
+    60% {
+        content: "..";
+    }
+    80%,
+    100% {
+        content: "...";
+    }
+}
+
+.error-state {
+    padding: var(--space-6);
+    text-align: center;
+    color: var(--warning-orange);
+    font-family: "Fira Code", monospace;
+    font-style: italic;
+}
+
+/* File/Post Header Styles */
+.content-header {
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--border-glow);
+    margin-bottom: var(--space-4);
+}
+
+.file-info {
+    font-family: "Fira Code", monospace;
+    font-size: var(--font-sm);
+    margin-bottom: var(--space-4);
+}
+
+.content-meta {
+    font-family: "Fira Code", monospace;
+    font-size: var(--font-xs);
+    color: var(--text-secondary);
+}
+
+.meta-line {
+    margin-bottom: var(--space-1);
+}
+
+.meta-label {
+    color: var(--cyber-blue);
+    font-weight: 600;
+    margin-right: var(--space-2);
+}
+
+.meta-value {
+    color: var(--text-secondary);
+}
+
+/* Comment Prefix */
+.comment-prefix {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* Common Background Patterns */
+.content-box {
+    background: rgba(0, 0, 0, 0.2);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+}
+
+.content-box-green {
+    border-left: 3px solid var(--success-green);
+}
+
+.content-box-blue {
+    border-left: 3px solid var(--cyber-blue);
+}
+
+.content-box-pink {
+    border-left: 3px solid var(--neon-pink);
+}
+
+/* Common Typography Patterns */
+.heading-neon-pink {
+    color: var(--neon-pink);
+    font-family: "Orbitron", monospace;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--neon-pink);
+}
+
+.heading-cyber-blue {
+    color: var(--cyber-blue);
+    font-family: "Orbitron", monospace;
+    font-weight: 600;
+    text-shadow: 0 0 8px var(--cyber-blue);
+}
+
+.heading-electric-purple {
+    color: var(--electric-purple);
+    font-family: "Orbitron", monospace;
+    font-weight: 500;
+    text-shadow: 0 0 5px var(--electric-purple);
+}
+
+/* Common Spacing Patterns */
+.padding-4 {
+    padding: var(--space-4);
+}
+
+.margin-bottom-4 {
+    margin-bottom: var(--space-4);
+}
+
+.margin-bottom-2 {
+    margin-bottom: var(--space-2);
+}
+
+/* Code Styling */
+.inline-code {
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--cyber-blue);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-xs);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.code-block {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    margin: var(--space-4) 0;
+    overflow-x: auto;
+    position: relative;
+}
+
+.code-block::before {
+    content: "code";
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-3);
+    color: var(--text-muted);
+    font-size: var(--font-xs);
+    opacity: 0.6;
+}
+
+.code-block code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text-primary);
+    font-size: var(--font-sm);
+    display: block;
+    white-space: pre;
+}
+
+/* Terminal Title Consistency */
+.terminal-title-default {
+    color: var(--text-secondary);
+    font-family: "Fira Code", monospace;
+    font-size: var(--font-xs);
+}
+
+/* Focus States */
+.terminal-control:focus {
+    outline: 2px solid var(--electric-purple);
+    outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .full-page-terminal {
+        padding: var(--space-2);
+    }
+
+    .full-page-terminal .container {
+        margin: 0;
+        padding: 0 var(--space-2);
+    }
+
+    .blog-terminal,
+    .about-terminal,
+    .terminal-container,
+    .terminal-window {
+        margin: 0 !important;
+        max-width: 100% !important;
+        overflow-x: hidden;
+    }
+
+    .terminal-body {
+        padding: var(--space-3);
+        overflow-x: auto;
+    }
+
+    .directory-listing {
+        min-width: 100%;
+    }
+
+    .directory-entry {
+        grid-template-columns: 1fr;
+        gap: var(--space-1);
+        text-align: left;
+        padding: var(--space-3) 0;
+        border-bottom: 1px solid rgba(255, 105, 180, 0.1);
+    }
+
+    .listing-header {
+        display: none;
+    }
+
+    .permissions,
+    .owner,
+    .group,
+    .size,
+    .date {
+        display: none;
+    }
+
+    /* Terminal prompt responsive styling */
+    .terminal-prompt {
+        font-size: var(--font-xs);
+        word-break: break-all;
+        overflow-wrap: break-word;
+        white-space: nowrap;
+        overflow-x: auto;
+        padding-bottom: var(--space-1);
+    }
+
+    .terminal-prompt .prompt,
+    .terminal-prompt .command {
+        display: inline;
+        word-break: normal;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .full-page-terminal {
+        padding: var(--space-1);
+    }
+
+    .full-page-terminal .container {
+        padding: 0 var(--space-1);
+    }
+
+    .blog-terminal,
+    .about-terminal,
+    .terminal-container,
+    .terminal-window {
+        margin: 0 !important;
+        border-radius: var(--radius-sm);
+    }
+
+    .terminal-body {
+        padding: var(--space-2);
+    }
+
+    .directory-listing {
+        font-size: var(--font-xs);
+        overflow-x: auto;
+    }
+
+    .directory-entry {
+        padding: var(--space-2) 0;
+        white-space: nowrap;
+        min-width: max-content;
+    }
+
+    /* Ensure terminal prompt doesn't overflow on very small screens */
+    .terminal-prompt {
+        font-size: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: var(--space-1);
+        margin-bottom: var(--space-2);
+    }
+
+    .content-header {
+        padding: var(--space-3);
+    }
+
+    .file-info {
+        font-size: var(--font-xs);
+    }
+}

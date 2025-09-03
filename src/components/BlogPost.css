@@ -1,0 +1,164 @@
+/* Blog Post Page Styling */
+@import "../styles/shared-terminal.css";
+
+/* Post Header and Meta inherit shared styles */
+
+/* Post Content */
+.post-body {
+    padding: var(--space-4);
+    line-height: 1.8;
+    font-size: var(--font-sm);
+    color: var(--text-primary);
+}
+
+.post-body h1 {
+    color: var(--neon-pink);
+    font-family: "Orbitron", monospace;
+    font-weight: 700;
+    font-size: var(--font-xl);
+    margin: var(--space-6) 0 var(--space-4);
+    text-shadow: 0 0 10px var(--neon-pink);
+}
+
+.post-body h2 {
+    color: var(--cyber-blue);
+    font-family: "Orbitron", monospace;
+    font-weight: 600;
+    font-size: var(--font-lg);
+    margin: var(--space-5) 0 var(--space-3);
+    text-shadow: 0 0 8px var(--cyber-blue);
+}
+
+.post-body h3 {
+    color: var(--electric-purple);
+    font-family: "Orbitron", monospace;
+    font-weight: 500;
+    font-size: var(--font-base);
+    margin: var(--space-4) 0 var(--space-2);
+    text-shadow: 0 0 5px var(--electric-purple);
+}
+
+.post-body p {
+    margin-bottom: var(--space-4);
+    color: var(--text-secondary);
+}
+
+.post-body code:not([class*="language-"]) {
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--cyber-blue);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-xs);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.post-body .inline-code {
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--cyber-blue);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-xs);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.post-body pre:not([class*="language-"]) {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    margin: var(--space-4) 0;
+    overflow-x: auto;
+    position: relative;
+}
+
+.post-body pre:not([class*="language-"])::before {
+    content: "code";
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-3);
+    color: var(--text-muted);
+    font-size: var(--font-xs);
+    opacity: 0.6;
+}
+
+.post-body pre:not([class*="language-"]) code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text-primary);
+    font-size: var(--font-sm);
+    display: block;
+    white-space: pre;
+}
+
+.post-body strong {
+    color: var(--warning-orange);
+    font-weight: 600;
+}
+
+.post-body em {
+    color: var(--electric-purple);
+    font-style: italic;
+}
+
+.post-body a {
+    color: var(--cyber-blue);
+    text-decoration: none;
+    border-bottom: 1px solid var(--cyber-blue);
+    transition: all var(--transition-base);
+}
+
+.post-body a:hover {
+    color: var(--neon-pink);
+    border-bottom-color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink);
+}
+
+.post-body ul,
+.post-body ol {
+    margin: var(--space-4) 0;
+    padding-left: var(--space-6);
+}
+
+.post-body li {
+    margin-bottom: var(--space-2);
+    color: var(--text-secondary);
+}
+
+.post-body li::marker {
+    color: var(--cyber-blue);
+}
+
+/* Loading and Error States inherit shared styles */
+
+/* Responsive Design - Post-specific overrides */
+@media (max-width: 768px) {
+    .post-body {
+        padding: var(--space-3);
+        font-size: var(--font-xs);
+    }
+
+    .post-body h1 {
+        font-size: var(--font-lg);
+    }
+
+    .post-body h2 {
+        font-size: var(--font-base);
+    }
+
+    .post-body h3 {
+        font-size: var(--font-sm);
+    }
+
+    .post-body pre:not([class*="language-"]) {
+        padding: var(--space-3);
+        margin: var(--space-3) 0;
+        overflow-x: scroll;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-body {
+        padding: var(--space-2);
+    }
+}

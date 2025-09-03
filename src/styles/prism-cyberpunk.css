@@ -1,0 +1,402 @@
+/* Custom Cyberpunk Prism.js Theme */
+/* Overrides default Prism Tomorrow theme with cyberpunk colors */
+
+/* Base code block styling */
+code[class*="language-"],
+pre[class*="language-"] {
+    color: var(--text-primary);
+    background: none;
+    font-family: "Fira Code", "Courier New", monospace;
+    font-size: var(--font-sm);
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.6;
+    tab-size: 4;
+    hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+    position: relative;
+    margin: var(--space-4) 0;
+    padding: var(--space-4);
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-md);
+    box-shadow:
+        inset 0 0 20px rgba(255, 105, 180, 0.05),
+        0 0 10px rgba(255, 105, 180, 0.1);
+}
+
+/* Add language label */
+pre[class*="language-"]::before {
+    content: attr(class);
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-3);
+    color: var(--text-muted);
+    font-size: var(--font-xs);
+    opacity: 0.6;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Language-specific labels */
+pre[class*="language-javascript"]::before { content: "JS"; }
+pre[class*="language-typescript"]::before { content: "TS"; }
+pre[class*="language-jsx"]::before { content: "JSX"; }
+pre[class*="language-tsx"]::before { content: "TSX"; }
+pre[class*="language-css"]::before { content: "CSS"; }
+pre[class*="language-scss"]::before { content: "SCSS"; }
+pre[class*="language-json"]::before { content: "JSON"; }
+pre[class*="language-bash"]::before { content: "BASH"; }
+pre[class*="language-shell"]::before { content: "SHELL"; }
+pre[class*="language-nix"]::before { content: "NIX"; }
+pre[class*="language-yaml"]::before { content: "YAML"; }
+pre[class*="language-toml"]::before { content: "TOML"; }
+pre[class*="language-rust"]::before { content: "RUST"; }
+pre[class*="language-python"]::before { content: "PYTHON"; }
+pre[class*="language-go"]::before { content: "GO"; }
+pre[class*="language-docker"]::before { content: "DOCKER"; }
+pre[class*="language-nginx"]::before { content: "NGINX"; }
+pre[class*="language-sql"]::before { content: "SQL"; }
+pre[class*="language-markdown"]::before { content: "MD"; }
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    color: var(--cyber-blue);
+    font-size: var(--font-xs);
+    white-space: normal;
+}
+
+/* Cyberpunk syntax highlighting colors */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.token.punctuation {
+    color: var(--text-secondary);
+}
+
+.token.namespace {
+    opacity: 0.7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+    color: var(--warning-orange);
+    text-shadow: 0 0 5px var(--warning-orange);
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+    color: var(--success-green);
+    text-shadow: 0 0 5px var(--success-green);
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+    color: var(--cyber-blue);
+    text-shadow: 0 0 5px var(--cyber-blue);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+    color: var(--neon-pink);
+    font-weight: 600;
+    text-shadow: 0 0 5px var(--neon-pink);
+}
+
+.token.function,
+.token.class-name {
+    color: var(--electric-purple);
+    font-weight: 600;
+    text-shadow: 0 0 5px var(--electric-purple);
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+    color: var(--cyber-blue);
+    text-shadow: 0 0 5px var(--cyber-blue);
+}
+
+.token.important,
+.token.bold {
+    font-weight: bold;
+}
+
+.token.italic {
+    font-style: italic;
+}
+
+.token.entity {
+    cursor: help;
+}
+
+/* Language-specific customizations */
+
+/* JSON */
+.language-json .token.property {
+    color: var(--cyber-blue);
+}
+
+.language-json .token.string {
+    color: var(--success-green);
+}
+
+.language-json .token.number {
+    color: var(--warning-orange);
+}
+
+.language-json .token.boolean {
+    color: var(--neon-pink);
+}
+
+/* CSS */
+.language-css .token.selector {
+    color: var(--neon-pink);
+    font-weight: 600;
+}
+
+.language-css .token.property {
+    color: var(--cyber-blue);
+}
+
+.language-css .token.function {
+    color: var(--electric-purple);
+}
+
+/* JavaScript/TypeScript */
+.language-javascript .token.keyword,
+.language-typescript .token.keyword {
+    color: var(--neon-pink);
+}
+
+.language-javascript .token.function,
+.language-typescript .token.function {
+    color: var(--electric-purple);
+}
+
+.language-javascript .token.string,
+.language-typescript .token.string {
+    color: var(--success-green);
+}
+
+/* Bash/Shell */
+.language-bash .token.function,
+.language-shell .token.function {
+    color: var(--cyber-blue);
+}
+
+.language-bash .token.string,
+.language-shell .token.string {
+    color: var(--success-green);
+}
+
+/* Nix */
+.language-nix .token.keyword {
+    color: var(--neon-pink);
+}
+
+.language-nix .token.string {
+    color: var(--success-green);
+}
+
+.language-nix .token.function {
+    color: var(--electric-purple);
+}
+
+/* Python */
+.language-python .token.keyword {
+    color: var(--neon-pink);
+}
+
+.language-python .token.decorator {
+    color: var(--warning-orange);
+}
+
+.language-python .token.string {
+    color: var(--success-green);
+}
+
+/* Rust */
+.language-rust .token.keyword {
+    color: var(--neon-pink);
+}
+
+.language-rust .token.macro {
+    color: var(--warning-orange);
+}
+
+.language-rust .token.lifetime {
+    color: var(--electric-purple);
+}
+
+/* Line highlighting */
+pre[class*="language-"] .highlight-line {
+    background: rgba(255, 105, 180, 0.1);
+    border-left: 3px solid var(--neon-pink);
+    padding-left: calc(var(--space-3) - 3px);
+    margin-left: calc(-1 * var(--space-3));
+    display: block;
+}
+
+/* Line numbers (if using prism-line-numbers plugin) */
+.line-numbers .line-numbers-rows {
+    border-right: 1px solid rgba(255, 105, 180, 0.3);
+    padding-right: var(--space-3);
+    margin-right: var(--space-3);
+}
+
+.line-numbers-rows > span:before {
+    color: var(--text-muted);
+    font-size: var(--font-xs);
+}
+
+/* Copy button styling (if using prism-copy-to-clipboard plugin) */
+.copy-to-clipboard-button {
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-10);
+    padding: var(--space-1) var(--space-2);
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid var(--cyber-blue);
+    border-radius: var(--radius-sm);
+    color: var(--cyber-blue);
+    font-size: var(--font-xs);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    font-family: "Fira Code", monospace;
+}
+
+.copy-to-clipboard-button:hover {
+    background: var(--cyber-blue);
+    color: var(--terminal-bg);
+    box-shadow: 0 0 10px var(--cyber-blue);
+}
+
+/* Scrollbar for code blocks */
+pre[class*="language-"]::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-sm);
+}
+
+pre[class*="language-"]::-webkit-scrollbar-thumb {
+    background: var(--neon-pink);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 5px var(--neon-pink);
+}
+
+pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
+    background: var(--cyber-blue);
+    box-shadow: 0 0 5px var(--cyber-blue);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    pre[class*="language-"] {
+        padding: var(--space-3);
+        margin: var(--space-3) 0;
+        font-size: var(--font-xs);
+        overflow-x: auto;
+    }
+
+    pre[class*="language-"]::before {
+        top: var(--space-1);
+        right: var(--space-2);
+        font-size: 10px;
+    }
+
+    :not(pre) > code[class*="language-"] {
+        font-size: 11px;
+        padding: 2px var(--space-1);
+    }
+}
+
+@media (max-width: 480px) {
+    pre[class*="language-"] {
+        padding: var(--space-2);
+        margin: var(--space-2) 0;
+        border-radius: var(--radius-sm);
+    }
+}
+
+/* Special effects for cyberpunk theme */
+pre[class*="language-"]:hover {
+    border-color: var(--cyber-blue);
+    box-shadow:
+        inset 0 0 20px rgba(0, 255, 255, 0.05),
+        0 0 15px rgba(0, 255, 255, 0.1);
+    transition: all var(--transition-base);
+}
+
+/* Glitch effect for errors/warnings */
+.token.error {
+    color: var(--error-red);
+    text-shadow:
+        0 0 5px var(--error-red),
+        1px 0 0 var(--error-red),
+        -1px 0 0 var(--error-red);
+    animation: glitch-text 0.3s infinite;
+}
+
+@keyframes glitch-text {
+    0% { transform: translate(0); }
+    20% { transform: translate(-1px, 1px); }
+    40% { transform: translate(-1px, -1px); }
+    60% { transform: translate(1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+    100% { transform: translate(0); }
+}
+
+/* Code block terminal-like styling */
+pre[class*="language-"] {
+    position: relative;
+}
+
+pre[class*="language-"]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(transparent 50%, rgba(0, 255, 255, 0.01) 50%),
+        linear-gradient(90deg, transparent 95%, rgba(255, 105, 180, 0.02) 100%);
+    background-size: 100% 2px, 2px 100%;
+    pointer-events: none;
+    opacity: 0.3;
+}

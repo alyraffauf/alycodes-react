@@ -1,0 +1,312 @@
+/* Mobile & Tablet Optimizations */
+/* This file contains mobile-specific enhancements that won't affect the desktop experience */
+
+/* CSS Variables for mobile-specific adjustments */
+:root {
+    --mobile-bottom-bar-height: 0px;
+}
+
+/* Add iOS-specific variables */
+.is-ios {
+    --mobile-bottom-bar-height: env(safe-area-inset-bottom, 0px);
+}
+
+/* Use custom viewport height calculation for mobile */
+.use-vh {
+    height: 100vh; /* Fallback */
+    height: calc(var(--vh, 1vh) * 100);
+}
+
+/* General mobile improvements */
+@media (max-width: 768px) {
+    /* Increase touch target sizes */
+    button,
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Improve vertical spacing */
+    .section {
+        padding: var(--space-10) 0;
+    }
+
+    /* Improve tap feedback */
+    button:active,
+    .btn:active,
+    .directory-entry:active {
+        background-color: rgba(255, 105, 180, 0.15) !important;
+    }
+}
+
+/* Phone-specific optimizations */
+@media (max-width: 480px) {
+    /* Header improvements */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-radius: 0;
+        box-shadow: 0 2px 15px rgba(255, 105, 180, 0.3);
+        z-index: 999;
+    }
+
+    .header .terminal-header {
+        padding: var(--space-2);
+    }
+
+    /* Mobile layout adjustments */
+
+    /* Prevent horizontal overflow */
+    .container {
+        width: 100%;
+        padding: 0 var(--space-3);
+        overflow-x: hidden;
+    }
+
+    /* Adjust main content without header */
+    main {
+        padding-top: 0;
+        padding-bottom: var(--mobile-bottom-bar-height);
+    }
+
+    /* Improve terminal windows */
+    .terminal-window {
+        margin: 0 0 var(--space-6) 0;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Fix Hero section terminal consistency */
+    .hero-right .terminal-window,
+    .hero-left .terminal-window {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        flex-shrink: 0;
+    }
+
+    /* Ensure stats terminal matches identity terminal width */
+    .stats-terminal {
+        width: 100% !important;
+        min-width: 0;
+        flex: 1;
+    }
+
+    /* Fix JSON content overflow and layout */
+    .json-content {
+        overflow-x: auto;
+        word-break: break-word;
+        width: 100%;
+    }
+
+    .json-content .identity-info {
+        display: block;
+        width: 100%;
+        padding: var(--space-1) 0;
+        line-height: 1.4;
+    }
+
+    .json-content .json-key,
+    .json-content .json-value {
+        font-size: var(--font-xs);
+    }
+
+    .json-content .skill-json-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-1);
+    }
+
+    .json-content .nix-syntax-line {
+        display: flex;
+        width: 100%;
+    }
+
+    .json-content .skill-bar-container {
+        margin-left: 0;
+        margin-top: var(--space-1);
+        width: 200px;
+        max-width: 100%;
+    }
+
+    .json-content .json-bracket {
+        font-size: var(--font-sm);
+        color: var(--text-muted);
+    }
+
+    /* Fix terminal code alignment on mobile */
+    .terminal-body {
+        text-align: left !important;
+    }
+
+    .json-content {
+        text-align: left !important;
+    }
+
+    .terminal-output {
+        text-align: left !important;
+    }
+
+    .prompt-line {
+        text-align: left !important;
+    }
+
+    .nix-syntax-line {
+        text-align: left !important;
+    }
+
+    .skill-json-item {
+        text-align: left !important;
+    }
+
+    /* Font size adjustments */
+    .section-title {
+        font-size: var(--font-2xl);
+        margin-bottom: var(--space-6);
+    }
+
+    .heading-1 {
+        font-size: var(--font-3xl);
+    }
+
+    .heading-2 {
+        font-size: var(--font-2xl);
+    }
+
+    /* Improve button touch targets */
+    .btn {
+        padding: var(--space-3) var(--space-5);
+        font-size: var(--font-base);
+        margin-bottom: var(--space-4);
+    }
+
+    /* Hide scrollbar but keep functionality */
+    ::-webkit-scrollbar {
+        width: 3px;
+    }
+}
+
+/* iPad & tablet-specific optimizations */
+@media (min-width: 481px) and (max-width: 1024px) {
+    /* Better iPad layout */
+
+    /* Better terminal display */
+    .terminal-window {
+        margin: 0 auto var(--space-6) auto;
+        max-width: 90%;
+    }
+
+    /* Grid improvements */
+    .grid-cols-2,
+    .grid-cols-3,
+    .grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Improved mobile layout */
+}
+
+/* Landscape mode fixes for mobile */
+@media (max-height: 480px) and (orientation: landscape) {
+    main {
+        padding-top: var(--space-8);
+    }
+
+    /* Adjust section spacing */
+    .section {
+        padding: var(--space-8) 0;
+    }
+}
+
+/* Fix for notched phones */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+/* Touch feedback improvements */
+@media (max-width: 768px) {
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Active state styling for better touch feedback */
+    .is-active,
+    button:active,
+    .btn:active,
+    [role="button"]:active {
+        transform: scale(0.98) !important;
+        opacity: 0.9 !important;
+        background-color: rgba(255, 105, 180, 0.15) !important;
+        transition:
+            transform 0.1s ease,
+            opacity 0.1s ease !important;
+    }
+
+    .pulse-glow,
+    .glitch,
+    .cyber-border::before {
+        animation-duration: 3s; /* Slower animations for better performance */
+    }
+
+    /* Mobile-specific scrolling improvements */
+    @media (max-width: 768px) {
+        html,
+        body {
+            overscroll-behavior: none; /* Prevent pull-to-refresh and bounce effects */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* Add momentum scrolling for smooth touch scrolling */
+        .terminal-body {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Fix for position:fixed elements when keyboard opens */
+
+        /* Improve tap targets for better accessibility */
+        button,
+        .btn,
+        .directory-entry,
+        input,
+        select,
+        textarea {
+            min-height: 44px;
+        }
+    }
+
+    /* Animation performance optimizations */
+
+    /* Reduce motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.001ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.001ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+/* Improve focus states for accessibility */
+@media (max-width: 768px) {
+    button:focus,
+    .btn:focus,
+    a:focus {
+        outline: 2px solid var(--neon-pink);
+        outline-offset: 2px;
+        position: relative;
+        z-index: 2;
+    }
+}

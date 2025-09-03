@@ -1,0 +1,144 @@
+/*
+ * Hero.mobile.css
+ * Mobile-specific styles for the Hero component
+ * Reorders content to display name and typing animation first on mobile
+ */
+
+/* Mobile & Tablet Optimizations */
+@media (max-width: 768px) {
+    /* Reordering for mobile - makes the hero-left appear first */
+    .hero-layout {
+        display: flex;
+        flex-direction: column;
+        margin-top: 0;
+        padding-top: var(--space-8);
+    }
+
+    /* Place hero-left at the top */
+    .hero-left {
+        order: 1;
+        margin-bottom: var(--space-6);
+        width: 100%;
+        max-width: 100%;
+        flex: 1;
+    }
+
+    /* Place hero-right below */
+    .hero-right {
+        order: 2;
+        width: 100%;
+        max-width: 100%;
+        flex: 1;
+    }
+
+    /* Make the title larger on mobile for more impact */
+    .hero-title {
+        font-size: var(--font-4xl);
+        margin-top: var(--space-3);
+        margin-bottom: var(--space-4);
+    }
+
+    /* Ensure the animated text has enough space */
+    .hero-subtitle {
+        margin-bottom: var(--space-6);
+        text-align: center;
+    }
+}
+
+/* Phone-specific styles */
+@media (max-width: 480px) {
+    .hero {
+        /* Adjust padding for smaller screens */
+        padding-top: var(--space-8);
+        padding-bottom: var(--space-12);
+        min-height: auto;
+    }
+
+    /* Make the name stand out more */
+    .hero-title {
+        font-size: var(--font-3xl);
+        text-shadow: 0 0 10px var(--neon-pink);
+        animation: pulse-text 2s ease-in-out infinite alternate;
+        text-align: center;
+        width: 100%;
+        margin-top: var(--space-2);
+    }
+
+    @keyframes text-glow {
+        0% {
+            text-shadow: 0 0 1px var(--text-secondary);
+        }
+        100% {
+            text-shadow: 0 0 6px var(--neon-pink);
+            color: var(--text-primary);
+        }
+    }
+
+    /* Clean styling for typing text */
+    .hero-subtitle {
+        text-align: center;
+    }
+
+    /* Simple text styling */
+    .typed-complete {
+        color: var(--text-secondary);
+        line-height: 1.5;
+        display: inline;
+        text-align: center;
+        font-family: "Fira Code", monospace;
+    }
+
+    /* Adjust terminal windows for better mobile display */
+    .stats-terminal,
+    .terminal-window {
+        margin-top: var(--space-4);
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* Ensure consistent width for both terminals */
+    .hero-right .terminal-window,
+    .hero-left .terminal-window {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0;
+        margin-right: 0;
+        box-sizing: border-box;
+    }
+
+    /* Fix hero-right container to ensure full width */
+    .hero-right {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+        padding: 0;
+    }
+}
+
+/* Special animation for the name on mobile */
+@keyframes pulse-text {
+    0% {
+        opacity: 0.85;
+        transform: scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 480px) and (orientation: landscape) {
+    .hero {
+        padding-top: var(--space-4);
+        min-height: 100vh;
+        height: auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero-layout {
+        gap: var(--space-4);
+    }
+}

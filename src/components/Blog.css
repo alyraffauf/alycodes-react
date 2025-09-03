@@ -1,0 +1,396 @@
+/* Terminal Blog */
+@import "../styles/shared-terminal.css";
+
+.post-item {
+    border-bottom: 1px solid rgba(255, 105, 180, 0.1);
+    transition: all var(--transition-base);
+}
+
+.post-item:last-child {
+    border-bottom: none;
+}
+
+.post-name {
+    color: var(--electric-purple);
+    font-weight: 600;
+    text-shadow: 0 0 2px var(--electric-purple);
+}
+
+.post-name:hover {
+    color: var(--neon-pink);
+    text-shadow: 0 0 3px var(--neon-pink);
+}
+
+/* Loading and Empty States */
+/* Loading and Empty States - Uses shared styles */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .post-name {
+        font-size: var(--font-base);
+        word-break: break-word;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-terminal {
+        border-radius: var(--radius-sm);
+    }
+
+    .post-name {
+        font-size: var(--font-sm);
+    }
+}
+
+/* More Posts Button */
+.more-posts-container {
+    margin-top: var(--space-4);
+    text-align: right;
+    padding: var(--space-2) 0;
+    border-top: 1px solid rgba(255, 105, 180, 0.1);
+    animation: fadeInUp 0.5s ease-out 0.3s backwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.more-posts-btn {
+    background: transparent;
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    cursor: pointer;
+    font-family: "Fira Code", monospace;
+    font-size: var(--font-xs);
+    padding: var(--space-2) var(--space-3);
+    transition: all var(--transition-base);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-left: auto;
+}
+
+.more-posts-btn:hover {
+    border-color: var(--electric-purple);
+    color: var(--electric-purple);
+    background: rgba(218, 112, 214, 0.05);
+    text-shadow: 0 0 5px var(--electric-purple);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(218, 112, 214, 0.2);
+}
+
+.more-posts-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(218, 112, 214, 0.1);
+}
+
+.more-posts-btn:focus {
+    outline: 2px solid var(--electric-purple);
+    outline-offset: 2px;
+}
+
+.more-text {
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.more-count {
+    opacity: 0.6;
+    font-size: var(--font-xs);
+}
+
+/* Modal Styles */
+.blog-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: var(--z-modal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6);
+    animation: fadeIn 0.3s ease-out;
+    overflow: hidden;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.blog-modal {
+    background: var(--card-bg);
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-md);
+    max-width: 1000px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease-out;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+    overflow: hidden;
+    position: relative;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    background: var(--darker-bg);
+    border-bottom: 1px solid var(--border-glow);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-xs);
+    color: var(--text-secondary);
+    font-family: "Fira Code", monospace;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.modal-controls {
+    display: flex;
+    gap: var(--space-1);
+}
+
+.modal-control {
+    width: 12px;
+    height: 12px;
+    border-radius: var(--radius-full);
+    background: var(--text-muted);
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: bold;
+    color: transparent;
+    transition: all 0.15s ease;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+.modal-control:hover {
+    color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.05);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.modal-control.close {
+    background: #ff5f57;
+}
+
+.modal-control.close:hover {
+    background: #ff3b30;
+}
+
+.modal-control.close:hover::before {
+    content: "×";
+}
+
+.modal-control:focus {
+    outline: 2px solid var(--electric-purple);
+    outline-offset: 2px;
+}
+
+.modal-control.close:focus {
+    outline: 2px solid var(--neon-pink);
+    outline-offset: 2px;
+}
+
+.modal-control.minimize {
+    background: #ffbd2e;
+}
+
+.modal-control.maximize {
+    background: #28ca42;
+}
+
+.modal-title {
+    color: var(--text-secondary);
+    font-family: "Fira Code", monospace;
+    font-size: var(--font-xs);
+    margin: 0;
+}
+
+.modal-body {
+    padding: var(--space-4) var(--space-6);
+    overflow-y: auto;
+    flex: 1;
+    background: var(--terminal-bg);
+    scroll-behavior: smooth;
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: var(--darker-bg);
+    border-radius: var(--radius-sm);
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: var(--border-glow);
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-base);
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--electric-purple);
+}
+
+.modal-directory-listing {
+    font-family: "Fira Code", monospace;
+    font-size: var(--font-sm);
+}
+
+.modal-directory-listing .listing-header {
+    position: sticky;
+    top: 0;
+    background: var(--terminal-bg);
+    z-index: 1;
+    padding-bottom: var(--space-2);
+    margin-bottom: var(--space-2);
+    border-bottom: 1px solid var(--border-glow);
+    backdrop-filter: blur(5px);
+}
+
+.modal-directory-listing .post-item {
+    animation: fadeInItem 0.3s ease-out backwards;
+}
+
+.modal-directory-listing .post-item:nth-child(1) {
+    animation-delay: 0.05s;
+}
+.modal-directory-listing .post-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+.modal-directory-listing .post-item:nth-child(3) {
+    animation-delay: 0.15s;
+}
+.modal-directory-listing .post-item:nth-child(4) {
+    animation-delay: 0.2s;
+}
+.modal-directory-listing .post-item:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+@keyframes fadeInItem {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Mobile Modal Styles */
+@media (max-width: 768px) {
+    .blog-modal-overlay {
+        padding: var(--space-4);
+        align-items: flex-start;
+        padding-top: var(--space-8);
+    }
+
+    .blog-modal {
+        max-height: 85vh;
+        border-radius: var(--radius-sm);
+    }
+
+    .modal-header {
+        padding: var(--space-2) var(--space-3);
+    }
+
+    .modal-body {
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .modal-directory-listing {
+        font-size: var(--font-xs);
+    }
+
+    .more-posts-btn {
+        font-size: 10px;
+        padding: var(--space-1) var(--space-2);
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-modal-overlay {
+        padding: var(--space-3);
+        padding-top: var(--space-4);
+    }
+
+    .blog-modal {
+        max-height: 90vh;
+        border-radius: var(--radius-sm);
+    }
+
+    .modal-header {
+        padding: var(--space-2) var(--space-3);
+        font-size: 10px;
+    }
+
+    .modal-body {
+        padding: var(--space-2) var(--space-3);
+    }
+
+    .more-posts-container {
+        text-align: center;
+    }
+
+    .more-posts-btn {
+        margin: 0 auto;
+    }
+}
+
+/* Interactive States */
+.post-item:hover {
+    background: rgba(255, 105, 180, 0.02);
+}
+
+.post-item:hover .post-name {
+    color: var(--neon-pink);
+    text-shadow: 0 0 3px var(--neon-pink);
+}
+
+/* Blog-specific styling tweaks */
+.post-name {
+    font-style: normal;
+}
+
+/* Terminal prompt styling for blog context */
+.blog-terminal .terminal-prompt .command {
+    color: var(--electric-purple);
+}
+
+.blog-terminal .terminal-title {
+    color: var(--electric-purple);
+}

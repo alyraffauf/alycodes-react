@@ -1,0 +1,115 @@
+/* BlogList Component Specific Styles */
+@import "../styles/shared-terminal.css";
+
+/* BlogList uses the full-page-terminal pattern like BlogPost */
+
+/* Animation for terminal window */
+.blog-list-page .terminal-window {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Directory Listing Enhancements */
+.blog-list-page .directory-listing {
+    font-family: "Fira Code", monospace;
+    font-size: var(--font-sm);
+}
+
+.blog-list-page .listing-header {
+    position: sticky;
+    top: 0;
+    background: var(--terminal-bg);
+    z-index: 1;
+    padding-bottom: var(--space-2);
+    margin-bottom: var(--space-2);
+    border-bottom: 1px solid var(--border-glow);
+    backdrop-filter: blur(5px);
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+}
+
+/* Directory Entry Animation */
+.blog-list-page .directory-entry {
+    animation: fadeInItem 0.3s ease-out backwards;
+    border-bottom: 1px solid rgba(255, 105, 180, 0.1);
+    margin-bottom: var(--space-1);
+    padding: var(--space-2) 0;
+}
+
+.blog-list-page .directory-entry:nth-child(1) {
+    animation-delay: 0.05s;
+}
+.blog-list-page .directory-entry:nth-child(2) {
+    animation-delay: 0.1s;
+}
+.blog-list-page .directory-entry:nth-child(3) {
+    animation-delay: 0.15s;
+}
+.blog-list-page .directory-entry:nth-child(4) {
+    animation-delay: 0.2s;
+}
+.blog-list-page .directory-entry:nth-child(5) {
+    animation-delay: 0.25s;
+}
+.blog-list-page .directory-entry:nth-child(n + 6) {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInItem {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.blog-list-page .directory-entry:last-child {
+    border-bottom: none;
+}
+
+.blog-list-page .directory-entry:hover {
+    background: rgba(255, 105, 180, 0.05);
+    transform: translateX(var(--space-2));
+}
+
+.blog-list-page .directory-entry:hover .post-name {
+    color: var(--neon-pink);
+    text-shadow: 0 0 3px var(--neon-pink);
+}
+
+.blog-list-page .post-name {
+    color: var(--electric-purple);
+    font-weight: 600;
+    text-shadow: 0 0 2px var(--electric-purple);
+    transition: all var(--transition-base);
+}
+
+/* Responsive Design - Inherits from shared-terminal.css */
+@media (max-width: 768px) {
+    .blog-list-page .directory-listing {
+        font-size: var(--font-xs);
+    }
+
+    .blog-list-page .post-name {
+        font-size: var(--font-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-list-page .post-name {
+        font-size: var(--font-xs);
+    }
+}

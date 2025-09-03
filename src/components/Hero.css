@@ -1,0 +1,506 @@
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: visible;
+    background: var(--terminal-bg);
+    min-height: 100vh;
+    padding: var(--space-8) 0;
+    margin: 0;
+}
+
+.hero-content {
+    width: 100%;
+    z-index: 2;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.hero-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 var(--space-5);
+    position: relative;
+    width: 100%;
+}
+
+.hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    align-items: flex-start;
+}
+
+.prompt-line {
+    color: var(--text-secondary);
+}
+
+.prompt {
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px var(--neon-pink);
+}
+
+.command {
+    color: var(--cyber-blue);
+    text-shadow: 0 0 5px var(--cyber-blue);
+}
+
+.output {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.identity-info {
+    display: block;
+    font-size: var(--font-sm);
+    line-height: 1.4;
+}
+
+.label {
+    color: var(--warning-orange);
+    font-weight: 600;
+    min-width: 80px;
+    text-shadow: 0 0 5px var(--warning-orange);
+}
+
+.status-online {
+    color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.json-bracket {
+    color: var(--warning-orange);
+    font-weight: bold;
+}
+
+.json-key {
+    color: var(--cyber-blue);
+    font-style: italic;
+}
+
+.json-value {
+    color: var(--neon-pink);
+}
+
+.nix-comment {
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: var(--space-1);
+    opacity: 0.8;
+}
+
+.nix-syntax-line {
+    display: inline;
+}
+
+.hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    gap: var(--space-6);
+}
+
+.hero-right-offset {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+}
+
+.hero-title {
+    color: var(--neon-pink);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    position: relative;
+}
+
+.hero-subtitle {
+    line-height: 1.6;
+    position: relative;
+}
+
+/* Typing text styling */
+.typed-complete {
+    display: inline;
+    color: var(--text-secondary);
+    font-family: "Fira Code", monospace;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .hero-subtitle {
+        text-align: center;
+    }
+
+    .typed-complete {
+        display: inline;
+        color: var(--text-secondary);
+        font-family: "Fira Code", monospace;
+        line-height: 1.5;
+        text-align: center;
+    }
+}
+
+.typing-cursor {
+    color: var(--neon-pink);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Keep cursor visible on all devices */
+@media (max-width: 768px) {
+    .typing-cursor {
+        display: inline;
+        opacity: 1;
+    }
+}
+
+.system-stats,
+.stats-terminal,
+.bio-terminal,
+.hero-left .terminal-window {
+    width: 100%;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid rgba(255, 105, 180, 0.1);
+    font-family: "Fira Code", monospace;
+    font-size: var(--font-sm);
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    color: var(--neon-pink);
+    font-weight: 600;
+    text-shadow: 0 0 5px var(--neon-pink);
+}
+
+.hero-actions {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: var(--space-6);
+}
+
+/* Terminal syntax highlighting overrides */
+.output pre[class*="language-"] {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    font-size: var(--font-sm);
+    position: relative;
+}
+
+.output pre[class*="language-"]::before {
+    display: none;
+}
+
+.output code[class*="language-"] {
+    background: transparent;
+    font-size: var(--font-sm);
+    color: var(--text-primary);
+}
+
+/* Allow text wrapping for plain text blocks */
+.output pre[class*="language-none"] code {
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    color: var(--text-secondary);
+}
+
+/* Nix-specific highlighting in terminal context */
+.output .language-nix .token.punctuation {
+    color: var(--text-secondary);
+}
+
+.output .language-nix .token.property {
+    color: var(--cyber-blue);
+    text-shadow: 0 0 5px var(--cyber-blue);
+}
+
+.output .language-nix .token.operator {
+    color: var(--text-secondary);
+}
+
+.output .language-nix .token.string {
+    color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink);
+}
+
+.output .language-nix .token.number {
+    color: var(--warning-orange);
+    text-shadow: 0 0 5px var(--warning-orange);
+}
+
+/* Remove hover effects for terminal code blocks */
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero-layout {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-8);
+    }
+
+    .hero-left {
+        order: 1;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-right {
+        order: 2;
+        align-items: center;
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .hero-right-offset {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .hero-title {
+        font-size: var(--font-4xl);
+        letter-spacing: 1px;
+        text-align: center;
+    }
+
+    .hero-subtitle {
+        text-align: center;
+    }
+
+    .hero-actions {
+        justify-content: center;
+        margin-top: var(--space-4);
+    }
+
+    /* Fix terminal code alignment on mobile */
+    .terminal-body {
+        text-align: left !important;
+    }
+
+    .json-content {
+        text-align: left !important;
+    }
+
+    .prompt-line {
+        text-align: left !important;
+    }
+
+    .identity-info {
+        text-align: left !important;
+    }
+
+    .nix-syntax-line {
+        text-align: left !important;
+    }
+
+    /* Ensure terminal windows are consistent */
+    .hero-right .terminal-window,
+    .hero-left .terminal-window,
+    .bio-terminal {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: auto;
+        padding: var(--space-6) 0;
+    }
+
+    .hero-layout {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+        padding: 0 var(--space-3);
+    }
+
+    .hero-left {
+        order: 1;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-right {
+        order: 2;
+        align-items: center;
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .hero-title {
+        font-size: var(--font-3xl);
+        letter-spacing: 1px;
+    }
+
+    .hero-subtitle {
+        font-size: var(--font-base);
+    }
+
+    .stat-row {
+        font-size: var(--font-xs);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: auto;
+        padding: var(--space-4) 0;
+    }
+
+    .hero-layout {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+        padding: 0 var(--space-2);
+    }
+
+    .hero-left {
+        order: 1;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-right {
+        order: 2;
+        align-items: center;
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .hero-title {
+        font-size: var(--font-2xl);
+        letter-spacing: 1px;
+    }
+
+    .hero-subtitle {
+        font-size: var(--font-sm);
+    }
+
+    .typed-complete {
+        font-size: var(--font-sm);
+        line-height: 1.4;
+        text-align: center;
+        display: inline;
+    }
+
+    /* Additional terminal content alignment fixes */
+    .terminal-body {
+        text-align: left !important;
+    }
+
+    .json-content {
+        text-align: left !important;
+    }
+
+    .prompt-line {
+        text-align: left !important;
+    }
+
+    .identity-info {
+        text-align: left !important;
+    }
+
+    .nix-syntax-line {
+        text-align: left !important;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .identity-info {
+        font-size: var(--font-xs);
+        flex-direction: column;
+        gap: var(--space-1);
+        align-items: flex-start;
+    }
+
+    .stat-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-1);
+    }
+
+    /* Fix terminal window consistency on mobile */
+    .hero-right .terminal-window,
+    .hero-left .terminal-window,
+    .bio-terminal {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        box-sizing: border-box;
+    }
+
+    /* Ensure JSON content doesn't overflow */
+    .json-content {
+        overflow-x: auto;
+        word-break: break-word;
+    }
+
+    /* Terminal syntax highlighting responsive adjustments */
+    .output pre[class*="language-"] {
+        font-size: var(--font-xs);
+    }
+
+    .output code[class*="language-"] {
+        font-size: var(--font-xs);
+    }
+}
+
+/* Interactive states */
+.hero-actions .btn:hover {
+    transform: translateY(-2px);
+}
+
+.hero-actions .btn:active {
+    transform: translateY(0);
+}
