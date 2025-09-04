@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
   handleTerminalClose,
   handleEnterKeyPress,
-  fetchGitHubStars,
-  fetchGitHubRepoCount,
+  fetchGitHubData,
   fetchBlueskyProfile,
   formatBlogDate,
 } from "../utils/helpers";
@@ -102,19 +101,18 @@ const Home: React.FC = () => {
   useEffect(() => {
     const loadGitHubData = async () => {
       try {
-        const [totalStars, repoCount, blueskyProfile] = await Promise.all([
-          fetchGitHubStars("alyraffauf"),
-          fetchGitHubRepoCount("alyraffauf"),
+        const [githubData, blueskyProfile] = await Promise.all([
+          fetchGitHubData("alyraffauf"),
           fetchBlueskyProfile("aly.ruffruff.party"),
         ]);
 
         setStatsData((prev) =>
           prev.map((item) => {
             if (item.key === "stargazers") {
-              return { ...item, value: totalStars };
+              return { ...item, value: githubData.stars };
             }
             if (item.key === "repos") {
-              return { ...item, value: repoCount };
+              return { ...item, value: githubData.repoCount };
             }
             if (item.key === "followers") {
               return { ...item, value: blueskyProfile.followers };

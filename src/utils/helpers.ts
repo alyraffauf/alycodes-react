@@ -64,9 +64,11 @@ const setCachedData = <T>(key: string, data: T): void => {
 };
 
 // GitHub API utilities with caching
-export const fetchGitHubStars = async (username: string): Promise<number> => {
-  const cacheKey = `github_stars_${username}`;
-  const cached = getCachedData<number>(cacheKey);
+export const fetchGitHubData = async (
+  username: string,
+): Promise<{ stars: number; repoCount: number }> => {
+  const cacheKey = `github_data_${username}`;
+  const cached = getCachedData<{ stars: number; repoCount: number }>(cacheKey);
 
   if (cached !== null) return cached;
 
@@ -81,50 +83,34 @@ export const fetchGitHubStars = async (username: string): Promise<number> => {
     if (!response.ok) throw new Error(`GitHub API error: ${response.status}`);
 
     const repos = await response.json();
-    const totalStars = repos.reduce(
+    const stars = repos.reduce(
       (total: number, repo: any) => total + (repo.stargazers_count || 0),
       0,
     );
+    const repoCount = repos.length;
 
-    setCachedData(cacheKey, totalStars);
-    return totalStars;
+    const result = { stars, repoCount };
+    setCachedData(cacheKey, result);
+    return result;
   } catch (error) {
-    console.error("Error fetching GitHub stars:", error);
+    console.error("Error fetching GitHub data:", error);
     const expiredCache = apiCache.get(cacheKey);
     if (expiredCache) return expiredCache.data;
     throw error;
   }
 };
 
+// Legacy functions for backward compatibility
+export const fetchGitHubStars = async (username: string): Promise<number> => {
+  const data = await fetchGitHubData(username);
+  return data.stars;
+};
+
 export const fetchGitHubRepoCount = async (
   username: string,
 ): Promise<number> => {
-  const cacheKey = `github_repos_${username}`;
-  const cached = getCachedData<number>(cacheKey);
-
-  if (cached !== null) return cached;
-
-  try {
-    const response = await fetch(
-      `https://api.github.com/users/${username}/repos?per_page=100`,
-      {
-        headers: { Accept: "application/vnd.github.v3+json" },
-      },
-    );
-
-    if (!response.ok) throw new Error(`GitHub API error: ${response.status}`);
-
-    const repos = await response.json();
-    const repoCount = repos.length;
-
-    setCachedData(cacheKey, repoCount);
-    return repoCount;
-  } catch (error) {
-    console.error("Error fetching GitHub repo count:", error);
-    const expiredCache = apiCache.get(cacheKey);
-    if (expiredCache) return expiredCache.data;
-    throw error;
-  }
+  const data = await fetchGitHubData(username);
+  return data.repoCount;
 };
 
 export const fetchBlueskyProfile = async (
