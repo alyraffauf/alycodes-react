@@ -1,6 +1,6 @@
 # alycodes-react
 
-[![Build and Push Docker Image](https://github.com/username/alycodes-react/actions/workflows/docker.yml/badge.svg)](https://github.com/username/alycodes-react/actions/workflows/docker.yml)
+[![Build and Push Docker Image](https://github.com/alyraffauf/alycodes-react/actions/workflows/docker.yml/badge.svg)](https://github.com/alyraffauf/alycodes-react/actions/workflows/docker.yml)
 
 Personal website for Aly Raffauf built with React, TypeScript, and Vite.
 
@@ -124,10 +124,10 @@ The project includes a GitHub workflow that automatically builds and pushes Dock
 
 ```bash
 # Pull the latest image from GitHub Container Registry
-docker pull ghcr.io/username/alycodes-react:latest
+docker pull ghcr.io/alyraffauf/alycodes-react:latest
 
 # Run the container
-docker run -p 8080:80 ghcr.io/username/alycodes-react:latest
+docker run -p 8080:80 ghcr.io/alyraffauf/alycodes-react:latest
 ```
 
 Available tags:
@@ -138,7 +138,7 @@ Available tags:
 The workflow automatically:
 - Builds the Docker image using Nix
 - Tags with appropriate version information
-- Pushes to `ghcr.io/username/alycodes-react`
+- Pushes to `ghcr.io/alyraffauf/alycodes-react`
 - Uses GitHub's built-in authentication
 
 ## License
